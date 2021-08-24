@@ -1,0 +1,64 @@
+/* CSS Document */
+body{
+    height: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+    background: #daf3ef4f;
+    color: #11191a;
+    font-size: 18px;
+}
+.main{
+    margin: 0;
+    float:left;
+    display:inline-block;
+    position:relative;
+    text-align: center;
+}
+.title{
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    border: 1px solid #6758ee;
+    background:#77ccf3;
+}
+.userInfo{
+    float: right;
+    margin-right: 10px;
+    font-size: 14px;
+    font-family: "Microsoft YaHei UI", serif;
+    padding-top: 5px;
+}
+.leftBar{
+    width:13%;
+    background:#bff3f3;
+    margin-bottom: 0;
+    float:left;
+    text-align:center;
+    height: 80%;
+    display:inline-block;
+    border:1px solid #FFFFFF;
+    overflow-x:hidden;
+}
+.leftBar ul{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    padding: 0;
+    list-style-type: none;
+    line-height: 3em;
+    overflow-x:hidden;
+}
+.footer{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    height:20px;
+    text-align: center;
+    text-decoration:none;
+    /*display: inline-block;
+    float: left;*/
+    /*flex: 1;*/
+    background-color: #84f0ba;
+    border: 1px solid #6ec1f8;
+}
