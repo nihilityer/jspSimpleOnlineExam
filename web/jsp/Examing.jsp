@@ -61,7 +61,9 @@
             <c:redirect url="OnlineExam.jsp" />
         </c:if>
     </c:if>
-
+    <c:if test="${surplusTime eq null}">
+        <c:set var="surplusTime" scope="session" value="${time * 60}"/>
+    </c:if>
     <sql:query var="anserInfo" dataSource="${onlineSystem}">
         select order_number from examofa;
     </sql:query>
@@ -173,27 +175,50 @@
                             <input type="hidden" name="bankid_q" value="${row.bankid_of_q}">
                             <input type="hidden" name="score" value="${row.score}">
                             <input type="hidden" id="isNext" name="isNext" value="">
+                            <input type="hidden" name="surplusTime" id="subTime" value="">
                             <c:if test="${questionID ne '1' and questionID ne 1}">
-                                <input type="button" value="上一题" onclick="(function() {
-                              document.getElementById('isNext').value = 'up';
-                              document.getElementById('examForm').submit();
-                            })()">
+                                <input type="button" value="上一题" onclick="upTitle()">
                             </c:if>
                             <c:if test="${questionID ne num}">
-                                <input type="button" value="下一题" onclick="(function() {
-                              document.getElementById('isNext').value = 'down';
-                              document.getElementById('examForm').submit();
-                            })()">
+                                <input type="button" value="下一题" onclick="downTitle()">
                             </c:if>
-                            <input type="button" value="交卷" onclick="(function() {
-                          document.getElementById('isNext').value = 'sub';
-                          document.getElementById('examForm').submit();
-                        })()">
+                            <input type="button" value="交卷" onclick="subTitle()">
+                            <P>剩余时间: <b id="time"></b></P>
                         </form>
                     </div>
         </c:forEach>
     </c:if>
-
 </div>
 </body>
+<script>
+    let times = ${surplusTime};
+    const timeDiv = document.getElementById("time");
+    let timeObj = null;
+    function timer() {
+        if (times === 0) {
+            document.getElementById("examForm")
+            document.getElementById("examForm").submit();
+            window.clearInterval(timeObj);
+            return;
+        }
+        timeDiv.innerHTML = Math.floor(times / 60) + "分" + times % 60 + "秒";
+        times --;
+    }
+    function upTitle() {
+        document.getElementById("subTime").value = times;
+        document.getElementById("isNext").value = 'up';
+        document.getElementById('examForm').submit();
+    }
+    function downTitle() {
+        document.getElementById("subTime").value = times;
+        document.getElementById("isNext").value = 'down';
+        document.getElementById('examForm').submit();
+    }
+    function subTitle() {
+        document.getElementById("subTime").value = times;
+        document.getElementById("isNext").value = 'sub';
+        document.getElementById('examForm').submit();
+    }
+    timeObj = window.setInterval(timer,1000);
+</script>
 </html>

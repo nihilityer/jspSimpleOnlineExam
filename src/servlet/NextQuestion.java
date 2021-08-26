@@ -43,7 +43,6 @@ public class NextQuestion extends HttpServlet {
             questionId = Integer.parseInt(questionID);
         }
         String num = (String) session.getAttribute("num");
-        String time = (String) session.getAttribute("time");
         String trueAnswer = (String) session.getAttribute("trueAnswer");
         Long rowNum = (Long) session.getAttribute("rowNum");
         int rowINum = Math.toIntExact(rowNum);
@@ -54,10 +53,12 @@ public class NextQuestion extends HttpServlet {
         String bankId = req.getParameter("bankid_q");
         String score = req.getParameter("score");
         String isNext = req.getParameter("isNext");
+        String surplusTime = req.getParameter("surplusTime");
 
         resp.setCharacterEncoding("UTF-8");
         if (isNext.equals("up")){
             session.setAttribute("questionID",questionId-1);
+            session.setAttribute("surplusTime",surplusTime);
             resp.sendRedirect("Examing.jsp");
         } else if (isNext.equals("down")){
             String url = this.getServletContext().getInitParameter("url");
@@ -84,6 +85,7 @@ public class NextQuestion extends HttpServlet {
                 }
                 if (row==1){
                     session.setAttribute("questionID",questionId+1);
+                    session.setAttribute("surplusTime",surplusTime);
                     resp.sendRedirect("Examing.jsp");
                 }
             }catch (SQLException e) {
@@ -101,7 +103,7 @@ public class NextQuestion extends HttpServlet {
                 connection = DriverManager.getConnection(url,user,pwd);
                 Statement statement = connection.createStatement();
                 if (rowINum == startNum + number) {
-                    getGrade(resp, session, id, examId, startTime, number, startNum, statement);
+                    getGrade(resp, session, id, examId, startTime, number, startNum, statement, surplusTime);
                 } else {
                     String user_score =null;
                     if (!trueAnswer.equals(user_a)) {
@@ -144,7 +146,7 @@ public class NextQuestion extends HttpServlet {
                         }
                         rowINum++;
                     }
-                    getGrade(resp, session, id, examId, startTime, number, startNum, statement);
+                    getGrade(resp, session, id, examId, startTime, number, startNum, statement, surplusTime);
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
@@ -152,7 +154,7 @@ public class NextQuestion extends HttpServlet {
         }
     }
 
-    private void getGrade(HttpServletResponse resp, HttpSession session, Long id, String examId, Date startTime, int number, int startNum, Statement statement) throws SQLException, IOException {
+    private void getGrade(HttpServletResponse resp, HttpSession session, Long id, String examId, Date startTime, int number, int startNum, Statement statement, String surplusTime) throws SQLException, IOException {
         ResultSet resultSet = statement.executeQuery("select user_score from examofa limit "+(startNum-1)+","+(number-1)+";");
         int grade = 0;
         while (resultSet.next()) {
@@ -170,6 +172,7 @@ public class NextQuestion extends HttpServlet {
         int row = statement.executeUpdate("update usedinfo set test_time=" + between + ", grade=" + grade + " where user_id=" + id + " and exam_id=" + examId + ";");
         if (row>=1) {
             session.setAttribute("startTime",null);
+            session.setAttribute("surplusTime",surplusTime);
             resp.sendRedirect("OnlineExam.jsp");
         }
     }
