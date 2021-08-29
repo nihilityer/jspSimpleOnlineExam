@@ -67,7 +67,7 @@
                 <th>mangeTeacher</th>
                 <th>插入</th>
             </tr>
-            <tr><form>
+            <tr><form method="post">
                 <td><label>
                     <input type="text" name="classId">
                 </label></td>

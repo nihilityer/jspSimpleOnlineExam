@@ -41,20 +41,20 @@
     </ul>
 </div>
 <div style="width: 80%; float: right">
-<form method="post" action="">
+<form method="post" action="ModifyExamInfo">
     <label>
         考试名<input type="text" name="examName"><br>
     </label>
     <label>
-        可开始考试时间<input type="datetime-local" name="start_time" value="<%=new java.util.Date()%>"><br>
+        可开始考试时间<input type="datetime-local" name="startTime" value="<fmt:formatDate pattern="yyyy-MM-dd'T'HH:mm" value="<%=new java.util.Date()%>"/>"><br>
     </label>
     <label>
-        最后可进入时间<input type="datetime-local" name="end_time" value="<%=new java.util.Date()%>"><br>
+        最后可进入时间<input type="datetime-local" name="endTime" value="<fmt:formatDate pattern="yyyy-MM-dd'T'HH:mm" value="<%=new java.util.Date()%>"/>"><br>
     </label>
     <label>
-        考试时间<input type="number" name="use_time" min="1" max="180"><br>
+        考试时间<input type="number" name="useTime" min="1" max="180"><br>
     </label>
-    <input type="hidden" value="first" name="stage">
+    <input type="hidden" value="insert" name="operation">
     <input type="submit" value="开始选择题目">
 </form>
 </div>

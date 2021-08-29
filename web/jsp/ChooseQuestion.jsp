@@ -18,31 +18,11 @@
     <c:if test="${indexLine eq null}">
         <c:redirect url="../Login.jsp?message=fail"/>
     </c:if>
-    <c:set var="stage" value="${param.stage}"/>
-    <c:if test="${stage eq null}">
-        <c:redirect url="TestFormation.jsp"/>
+    <c:if test="${role eq 'student'}">
+        <c:redirect url="../Login.jsp?message=fail"/>
     </c:if>
 </head>
 <body>
-<c:if test="${stage eq 'frist'}">
-    <c:set var="examName" value="${param.examName}"/>
-    <c:set var="startTime" value="${param.startTime}"/>
-    <c:set var="endTime" value="${param.endTime}"/>
-    <c:set var="useTime" value="${param.useTime}"/>
-    <sql:query var="startRow" dataSource="${onlineSystem}">
-        select order_number from examofq;
-    </sql:query>
-    <c:set var="startId" value="${startRow.rowCount}"/>
-    <sql:update dataSource="${onlineSystem}">
-        insert into examinfo (exam_name,create_user,start_time,end_time,user_time,start_id) values(?,?,?,?,?,?);
-        <sql:param value="${examName}"/>
-        <sql:param value="${id}"/>
-        <sql:param value="${startTime}"/>
-        <sql:param value="${endTime}"/>
-        <sql:param value="${useTime}"/>
-        <sql:param value="${startId}"/>
-    </sql:update>
-    //卡在这里，之后再说
-</c:if>
+<h1>插入成功！！！</h1>
 </body>
 </html>

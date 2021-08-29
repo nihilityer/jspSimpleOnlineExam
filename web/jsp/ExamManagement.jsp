@@ -91,10 +91,10 @@
                                     <input type="text" name="examName" value="${row.exam_name}">
                                 </label></td>
                                 <td><label>
-                                    <input type="datetime-local" name="startTime" value="${row.start_time}">
+                                    <input type="datetime-local" name="startTime" value="<fmt:formatDate pattern="yyyy-MM-dd'T'HH:mm" value="${row.start_time}"/>">
                                 </label></td>
                                 <td><label>
-                                    <input type="datetime-local" name="endTime" value="${row.end_time}">
+                                    <input type="datetime-local" name="endTime" value="<fmt:formatDate pattern="yyyy-MM-dd'T'HH:mm" value="${row.end_time}"/>">
                                 </label></td>
                                 <td><label>
                                     <input type="text" name="useTime" value="${row.user_time}">
