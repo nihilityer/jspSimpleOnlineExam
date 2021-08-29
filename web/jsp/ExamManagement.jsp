@@ -70,8 +70,8 @@
         <c:set var="useTime" value="${null}"/>
     </c:if>
     <c:if test="${examInfo.rowCount >= 1}">
-        <div style="text-align: center;">
-            <table border="1" width="80%">
+        <div>
+            <table style="width: 80%">
                 <tr>
                     <th>考试ID</th>
                     <th>考试名</th>
@@ -84,46 +84,47 @@
                 </tr>
                 <c:forEach var="row" items="${examInfo.rows}">
                     <c:if test="${examID eq row.exam_id}">
-                        <tr>
-                            <td><c:out value="${row.exam_id}"/></td>
-                            <td><label>
-                                <input type="text" name="examName" value="${row.exam_name}">
-                            </label></td>
-                            <td><label>
-                                <input type="datetime-local" name="startTime" value="${row.start_time}">
-                            </label></td>
-                            <td><label>
-                                <input type="datetime-local" name="endTime" value="${row.end_time}">
-                            </label></td>
-                            <td><label>
-                                <input type="text" name="useTime" value="${row.user_time}">
-                            </label></td>
-                            <td><c:out value="${row.t_score}"/></td>
-                            <td><c:out value="${row.num_q}"/></td
-                            <td><form id="${row.exam_id}" method="post">
-                                <input type="hidden" value="${row.exam_id}" name="examID">
-                                <input type="button" value="修改" onclick="(function() {
-                                  document.getElementById('${row.exam_id}').submit();
-                                })()">
-                            </form></td>
-                        </tr>
+                        <form id="${row.exam_id}" method="post" action="ModifyExamInfo">
+                            <tr>
+                                <td><c:out value="${row.exam_id}"/></td>
+                                <td><label>
+                                    <input type="text" name="examName" value="${row.exam_name}">
+                                </label></td>
+                                <td><label>
+                                    <input type="datetime-local" name="startTime" value="${row.start_time}">
+                                </label></td>
+                                <td><label>
+                                    <input type="datetime-local" name="endTime" value="${row.end_time}">
+                                </label></td>
+                                <td><label>
+                                    <input type="text" name="useTime" value="${row.user_time}">
+                                </label></td>
+                                <td><c:out value="${row.t_score}"/></td>
+                                <td><c:out value="${row.num_q}"/></td>
+                                <td>
+                            <input type="hidden" value="${row.exam_id}" name="examID">
+                            <input type="hidden" value="modify" name="operation">
+                            <input type="submit" value="修改">
+                                </td>
+                            </tr>
+                        </form>
                     </c:if>
                     <c:if test="${examID ne row.exam_id}">
-                        <tr>
-                            <td><c:out value="${row.exam_id}"/></td>
-                            <td><c:out value="${row.exam_name}"/></td>
-                            <td><c:out value="${row.start_time}"/></td>
-                            <td><c:out value="${row.end_time}"/></td>
-                            <td><c:out value="${row.user_time}"/></td>
-                            <td><c:out value="${row.t_score}"/></td>
-                            <td><c:out value="${row.num_q}"/></td
-                            <td><form id="${row.exam_id}" method="post">
-                                <input type="hidden" value="${row.exam_id}" name="examID">
-                                <input type="button" value="修改" onclick="(function() {
-                                    document.getElementById('${row.exam_id}').submit();
-                                })()">
-                            </form></td>
-                        </tr>
+                        <form id="${row.exam_id}" method="post">
+                            <tr>
+                                <td><c:out value="${row.exam_id}"/></td>
+                                <td><c:out value="${row.exam_name}"/></td>
+                                <td><c:out value="${row.start_time}"/></td>
+                                <td><c:out value="${row.end_time}"/></td>
+                                <td><c:out value="${row.user_time}"/></td>
+                                <td><c:out value="${row.t_score}"/></td>
+                                <td><c:out value="${row.num_q}"/></td>
+                                <td>
+                                    <input type="hidden" value="${row.exam_id}" name="examID">
+                                    <input type="submit" value="修改">
+                                </td>
+                            </tr>
+                        </form>
                     </c:if>
                 </c:forEach>
             </table>

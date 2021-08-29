@@ -18,7 +18,7 @@
     </context-param>
     <context-param>
         <param-name>url</param-name>
-        <param-value>jdbc:mysql://127.0.0.1:3306/onlinesystem?characterEncoding=utf-8&amp;serverTimezone=GMT</param-value>
+        <param-value>jdbc:mysql://127.0.0.1:3306/onlinesystem?characterEncoding=utf-8&amp;serverTimezone=GMT%2B8</param-value>
     </context-param>
     <context-param>
         <param-name>driver</param-name>
@@ -50,5 +50,14 @@
     <servlet-mapping>
         <servlet-name>NextQuestion</servlet-name>
         <url-pattern>/jsp/NextQuestion</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ModifyExamInfo</servlet-name>
+        <servlet-class>servlet.ModifyExamInfo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModifyExamInfo</servlet-name>
+        <url-pattern>/jsp/ModifyExamInfo</url-pattern>
     </servlet-mapping>
 </web-app>

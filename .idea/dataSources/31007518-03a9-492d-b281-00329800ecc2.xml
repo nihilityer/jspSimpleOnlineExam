@@ -1085,12 +1085,10 @@ SELECT|sys.sys_config
     <column id="331" parent="293" name="t_score">
       <Position>7</Position>
       <DataType>int unsigned|0s</DataType>
-      <NotNull>1</NotNull>
     </column>
     <column id="332" parent="293" name="num_q">
       <Position>8</Position>
       <DataType>int unsigned|0s</DataType>
-      <NotNull>1</NotNull>
     </column>
     <column id="333" parent="293" name="start_id">
       <Position>9</Position>
@@ -1256,7 +1254,7 @@ SELECT|sys.sys_config
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="366" parent="298" name="back_name">
+    <column id="366" parent="298" name="bank_name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
@@ -1469,12 +1467,10 @@ SELECT|sys.sys_config
     <column id="409" parent="303" name="t_score">
       <Position>8</Position>
       <DataType>int unsigned|0s</DataType>
-      <NotNull>1</NotNull>
     </column>
     <column id="410" parent="303" name="num_q">
       <Position>9</Position>
       <DataType>int unsigned|0s</DataType>
-      <NotNull>1</NotNull>
     </column>
     <column id="411" parent="303" name="start_id">
       <Position>10</Position>

@@ -18,13 +18,15 @@
     </c:if>
 </head>
 <body>
-<c:set value="${param.examName}" var="name"/>
-<c:set value="${param.start}" var="start"/>
-<c:set value="${param.num}" var="num"/>
-<c:set value="${param.time}" var="time"/>
-<h1>exam_name:    <c:out value="${name}"/></h1>
-<h1>start_id:    <c:out value="${start}"/></h1>
-<h1>num_q:    <c:out value="${num}"/></h1>
-<h1>user_time:    <c:out value="${time}"/></h1>
+<c:set value="${param.examID}" var="examID"/>
+<c:set value="${param.examName}" var="examName"/>
+<c:set value="${param.startTime}" var="startTime"/>
+<c:set value="${param.endTime}" var="endTime"/>
+<c:set value="${param.useTime}" var="useTime"/>
+<h1>exam_name:    <c:out value="${examID}"/></h1>
+<h1>exam_name:    <c:out value="${examName}"/></h1>
+<h1>start_id:    <c:out value="${startTime}"/></h1>
+<h1>num_q:    <c:out value="${endTime}"/></h1>
+<h1>user_time:    <c:out value="${useTime}"/></h1>
 </body>
 </html>
