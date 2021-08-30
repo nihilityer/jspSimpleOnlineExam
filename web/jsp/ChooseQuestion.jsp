@@ -21,8 +21,55 @@
     <c:if test="${role eq 'student'}">
         <c:redirect url="../Login.jsp?message=fail"/>
     </c:if>
+    <c:if test="${nowInsertExamSId eq null}">
+        <c:redirect url="TestFormation.jsp"/>
+    </c:if>
 </head>
 <body>
-<h1>插入成功！！！</h1>
+<div style="align: center;">
+    <sql:query var="bankName" dataSource="${onlineSystem}">
+        select bank_name,bank_type from qbankcontext;
+    </sql:query>
+    <form method="post" action="InsertExamQuestion">
+        <c:if test="${bankName.rowCount >= 1}">
+            <c:forEach var="row" items="${bankName.rows}">
+                <sql:query var="question" dataSource="${onlineSystem}">
+                    select * from ${row.bank_name};
+                </sql:query>
+                <c:if test="${question.rowCount >= 1}">
+                    <c:if test="${row.bank_type eq 'c'}">
+                        <c:forEach var="Q" items="${question.rows}">
+                            <label>
+                                <input type="checkbox" name="question" value="<c:out value="${row.bank_name}@${Q.cq_id}"/>">
+                            </label><c:out value="${Q.cq_title}"/><br>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${row.bank_type eq 'i'}">
+                        <c:forEach var="Q" items="${question.rows}">
+                            <label>
+                                <input type="checkbox" name="question" value="<c:out value="${row.bank_name}@${Q.iq_id}"/>">
+                            </label><c:out value="${Q.iq_title}"/><br>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${row.bank_type eq 'f'}">
+                        <c:forEach var="Q" items="${question.rows}">
+                            <label>
+                                <input type="checkbox" name="question" value="<c:out value="${row.bank_name}@${Q.fq_id}"/>">
+                            </label><c:out value="${Q.fq_title}"/><br>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${row.bank_type eq 'a'}">
+                        <c:forEach var="Q" items="${question.rows}">
+                            <label>
+                                <input type="checkbox" name="question" value="<c:out value="${row.bank_name}@${Q.aq_id}"/>">
+                            </label><c:out value="${Q.aq_title}"/><br>
+                        </c:forEach>
+                    </c:if>
+                </c:if>
+            </c:forEach>
+        </c:if>
+        <input type="submit" value="确定">
+    </form>
+</div>
 </body>
 </html>

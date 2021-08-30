@@ -60,4 +60,13 @@
         <servlet-name>ModifyExamInfo</servlet-name>
         <url-pattern>/jsp/ModifyExamInfo</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>InsertExamQuestion</servlet-name>
+        <servlet-class>servlet.InsertExamQuestion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InsertExamQuestion</servlet-name>
+        <url-pattern>/jsp/InsertExamQuestion</url-pattern>
+    </servlet-mapping>
 </web-app>

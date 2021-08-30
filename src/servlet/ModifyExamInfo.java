@@ -55,8 +55,10 @@ public class ModifyExamInfo extends HttpServlet {
                 while (resultSet.next()) {
                     startId++;
                 }
+                startId++;
                 statement.executeUpdate("insert into examinfo (exam_name,create_user,start_time,end_time,user_time,start_id) values " +
                         "('" +examName+"','"+id+"','"+startTime+"','"+endTime+"','"+useTime+"','"+startId+"');");
+                session.setAttribute("nowInsertExamSId", startId);
                 resp.sendRedirect("ChooseQuestion.jsp");
             }
         } catch (SQLException | IOException exception) {
