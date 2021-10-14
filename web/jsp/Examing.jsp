@@ -69,9 +69,7 @@
     </sql:query>
     <c:set var="rowNum" scope="session" value="${anserInfo.rowCount+1}"/>
     <c:if test="${startTime eq null}">
-        <c:if test="${startTime eq null}">
-            <c:set var="startTime" scope="session" value="<%=new java.util.Date()%>" />
-        </c:if>
+        <c:set var="startTime" scope="session" value="<%=new java.util.Date()%>" />
         <sql:update dataSource="${onlineSystem}">
             insert into usedinfo (user_id,start_exam_time,exam_id,exam_name,question_num,start_id) values (?,?,?,?,?,?);
             <sql:param value="${id}" />

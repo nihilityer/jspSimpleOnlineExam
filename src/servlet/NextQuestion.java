@@ -75,6 +75,7 @@ public class NextQuestion extends HttpServlet {
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = null;
                 int row =0;
+                assert start != null;
                 rowINum = (int) (questionId + start - 1);
                 resultSet = statement.executeQuery("select order_number from examofa where order_number="+ rowINum + ";");
                 if (resultSet.next()) {
