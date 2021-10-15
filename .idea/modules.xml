@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/myWebPulsh.iml" filepath="$PROJECT_DIR$/myWebPulsh.iml" />
+      <module fileurl="file://$PROJECT_DIR$/onlineExamSystem.iml" filepath="$PROJECT_DIR$/onlineExamSystem.iml" />
     </modules>
   </component>
 </project>
